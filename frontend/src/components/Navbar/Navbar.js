@@ -20,7 +20,7 @@ function Navbar() {
           <NavLink to="/photos" activestyle>
             Photos
           </NavLink>
-          <NavLink to="/contact" activestyle>
+          <NavLink to="/contacts" activestyle>
             Contact
           </NavLink>
           <NavLink to="/admin" activestyle>

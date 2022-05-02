@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import { db } from '../../base';
+import PageHeader from '../PageHeader/PageHeader';
+import Navbar from '../Navbar/Navbar';
 import { collection, addDoc, doc, updateDoc } from "firebase/firestore"; 
-import { Heading, Body, FormElements, CommitteeButton, CommitteeButtonDiv, SubmitButton, Background } from './styles'
+import { Heading, Body, FormElements, CommitteeButton, CommitteeButtonDiv, SubmitButton, Background, Centering } from './styles'
 
 
 function UpdateCommitteeForm() {
@@ -38,6 +40,7 @@ function UpdateCommitteeForm() {
   const handleUpdateCommitteeClick = (e) => {
     e.preventDefault();
     setUpdateInProgress(true);
+    setCommitteeName(e.target.value);
     // iterate through committees to find ID of the one clicked, matching to its name 
     var oldID = ''
     committees.forEach((comm)=>{
@@ -46,6 +49,7 @@ function UpdateCommitteeForm() {
         oldID=comm.id;
       }
     });
+
     //console.log(e.target.value) is committee name that was clicked 
     var childNode = document.createElement('div');
     var committeeToUpdate = document.createElement('h4');
@@ -56,18 +60,19 @@ function UpdateCommitteeForm() {
    
     var form = document.createElement('form');
     var descInput = document.createElement('input');
-    descInput.addEventListener("change", (e)=>{
+    descInput.addEventListener("onChange", (e)=>{
       setNewDesc(e.target.value)
     })
     var descLabel = document.createTextNode('Description: ');
     var contactInput = document.createElement('input');
-    contactInput.addEventListener("change", (e)=>{
-      setNewContact(e.target.value)
+    contactInput.addEventListener("onChange", (e)=>{
+      console.log(e.target.value)
     })
+    
     var contactLabel = document.createTextNode('Contact: ');
     var submitButton = document.createElement('button');
     submitButton.textContent='Submit';
-    submitButton.addEventListener("click", (e)=>{
+    submitButton.addEventListener("onClick", (e)=>{
       e.preventDefault();
       console.log(newContact)
       //updateDoc(doc(db,"committees",oldID),)
@@ -88,9 +93,13 @@ function UpdateCommitteeForm() {
 
   }
   return (
-    
+    <div>
+<PageHeader/>
+        <Navbar/>
       <Body>
-        <Background>
+        
+       <Centering> <Background>
+         
         <Heading>Add Committee </Heading>
           
           <FormElements>
@@ -147,11 +156,13 @@ function UpdateCommitteeForm() {
               )
             })}
             </CommitteeButtonDiv>
-              </Background>
+              </Background></Centering>
            
            
             
       </Body>
+    </div>
+    
     )
   
 }

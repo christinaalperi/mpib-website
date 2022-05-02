@@ -1,15 +1,12 @@
 import React, { useContext } from 'react'
 import { AuthContext } from "../../AuthProvider";
 import PageHeader from "../../components/PageHeader/PageHeader";
-import UpdateContactForm from '../../components/UpdateForm/UpdateContactForm';
 import Navbar from '../../components/Navbar/Navbar';
-import UpdateCommitteeForm from '../../components/UpdateForm/UpdateCommitteeForm';
-import UpdateAnnouncementForm from '../../components/UpdateForm/UpdateAnnouncementForm';
-import UpdateQuestionsForm from '../../components/UpdateForm/UpdateQuestionsForm';
+
 import { auth, db } from "../../base";
 import { signOut } from "firebase/auth";
 import { useNavigate, Link } from "react-router-dom";
-import { Container } from './styles'
+import { Container, Button, LoginButtonDiv, Centering } from './styles'
 
 function Admin() {
   const { currentUser } = useContext(AuthContext);
@@ -31,17 +28,18 @@ function Admin() {
     <div>
       <PageHeader />
       <Navbar />
-      <div>
-        <button onClick={clickLogin}>
+      <LoginButtonDiv>
+        <Button onClick={clickLogin}>
           {currentUser ? "Log Out" : "Log In"}
-        </button>
-      </div>
-      <Container>
-        {currentUser && <UpdateAnnouncementForm/>}
-        {currentUser && <UpdateContactForm/> }
-        {currentUser && <UpdateCommitteeForm/>}
-        {currentUser && <UpdateQuestionsForm/>}
-      </Container>
+        </Button>
+      </LoginButtonDiv>
+      {currentUser && <Centering><Container>
+        <Link to='/question'><Button>Edit Questions</Button></Link>
+        <Link to='/announcement'><Button>Edit Announcements</Button></Link>
+        <Link to='/committee'><Button>Edit Committees</Button></Link>
+        <Link to='/contact'><Button>Edit Contacts</Button></Link>
+      </Container></Centering>
+      }
      
       
     </div>

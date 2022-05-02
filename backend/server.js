@@ -8,7 +8,7 @@ const app = express()
 const url = `https://api.instagram.com/oauth/authorize?client_id=${process.env.REACT_APP_INS_APP_ID}&redirect_uri=${process.env.REACT_APP_INS_REDIRECT_URI}&scope=user_profile,user_media&response_type=code`
     
 app.use(cors())
-app.get('/', (req, res) => {
+app.get(url, (req, res) => {
     console.log(req)
     console.log(res)
 })

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { db } from '../../base';
 import { collection, addDoc, deleteDoc, doc } from "firebase/firestore"; 
-import { Heading, Body, FormElements, SubmitButton, Background } from './styles'
+import { Heading, Body, FormElements, SubmitButton, Background, Centering} from './styles'
 
 function UpdateAnnouncementForm() {
     const [title, setTitle] = useState('')
@@ -38,7 +38,7 @@ function UpdateAnnouncementForm() {
     
   return (
     <Body>
-      <Background>
+     <Centering> <Background>
       <Heading>Add Announcement</Heading>
         <FormElements>
        
@@ -75,10 +75,10 @@ function UpdateAnnouncementForm() {
           )
         })}
       </ul>
-        <button onClick={(e)=>handleOnSubmit(e)}>Submit</button>
+        <SubmitButton onClick={(e)=>handleOnSubmit(e)}>Submit</SubmitButton>
      
       </Background>
-        
+        </Centering>
         
 
     </Body>

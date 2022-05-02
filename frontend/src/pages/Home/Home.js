@@ -6,7 +6,7 @@ import { ReactEmbeddedGoogleCalendar } from 'react-embedded-google-calendar';
 import PageHeader from "../../components/PageHeader/PageHeader";
 import AnnouncementList from "../../components/AnnouncementsList/AnnouncementList";
 import Navbar from "../../components/Navbar/Navbar";
-import { Container, AnnouncementsContainer, Background } from './styles';
+import { Container, AnnouncementsContainer, Background, Button, AddButtonDiv } from './styles';
 
 
 function Home() {
@@ -24,6 +24,7 @@ function Home() {
       <Container>
         <AnnouncementsContainer>
           <AnnouncementList />
+          {currentUser && <AddButtonDiv><Link to='/admin'><Button>Add Announcement</Button></Link></AddButtonDiv>} 
           </AnnouncementsContainer>
         
         <Background>
@@ -31,7 +32,7 @@ function Home() {
           </Background>
       
       </Container>
-      {currentUser && <Link to='/admin'><button>Add Announcement</button></Link>} 
+      
         
     </div>
   );

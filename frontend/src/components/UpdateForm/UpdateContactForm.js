@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { db } from '../../base';
 import { doc, collection, addDoc, deleteDoc } from "firebase/firestore"; 
-import {Heading, Body, FormElements, DeleteContactsDiv, SubmitButton, Background} from './styles'
+import {Heading, Body, FormElements, DeleteContactsDiv, SubmitButton, Background, Centering} from './styles'
 function UpdateContactForm() {
 
   const [contacts, setContacts] = useState([{}])
@@ -51,7 +51,7 @@ function UpdateContactForm() {
 
   return (
     <Body>
-     <Background>
+     <Centering><Background>
      <Heading>Add Contact </Heading>
         <FormElements>
           <label>
@@ -97,7 +97,7 @@ function UpdateContactForm() {
       </ul>
       <SubmitButton type="submit" value="Submit" onClick={(e)=>handleOnSubmit(e)}>Submit</SubmitButton>
     
-      </DeleteContactsDiv></Background>
+      </DeleteContactsDiv></Background></Centering>
       
       
       

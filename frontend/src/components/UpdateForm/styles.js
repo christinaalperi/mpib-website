@@ -9,12 +9,17 @@ export const Heading = styled.h1`
     margin:auto;
     padding:10px;
 ` 
-
+export const Centering = styled.div`
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+`
 export const Background = styled.div`
     background: #d3dbd3;
     border-radius:20px;
     margin:20px;
     padding:10px;
+    width:fit-content;
 `
 
 export const Body = styled.div`
@@ -51,4 +56,10 @@ export const SubmitButton = styled.button`
     text-align:center;
     display:inline-block;
     width:fit-content;
+    border-radius:25px;
+    padding: 5px 10px;
+    font-family: Monsterrat, sans-serif;
+    background: #A3BDA7;
+    border:none;
+    font-size:16px;
 `

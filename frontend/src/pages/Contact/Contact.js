@@ -3,7 +3,7 @@ import Navbar from '../../components/Navbar/Navbar'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import ContactsList from '../../components/ContactCardsList/ContactsList'
 import { AuthContext } from "../../AuthProvider";
-import { AddButtonDiv } from './styles';
+import { AddButtonDiv, Button } from './styles';
 import { Link } from 'react-router-dom';
 
 
@@ -15,7 +15,7 @@ function Contact() {
         <PageHeader />
         <Navbar />
         <ContactsList />
-       {currentUser && <AddButtonDiv><Link to='/admin'><button>Add Contact</button></Link></AddButtonDiv>} 
+       {currentUser && <AddButtonDiv><Link to='/admin'><Button>Add Contact</Button></Link></AddButtonDiv>} 
     </div>
   )
 }

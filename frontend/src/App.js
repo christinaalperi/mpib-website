@@ -9,6 +9,10 @@ import Admin from './pages/Admin/Admin'
 
 import Contact from './pages/Contact/Contact'
 import { AuthProvider } from "./AuthProvider"
+import QuestionUpdate from "./pages/Admin/Question"
+import AnnouncementUpdate from "./pages/Admin/Announcement"
+import CommiteeUpdate from "./pages/Admin/Committee"
+import ContactUpdate from "./pages/Admin/Contact"
 
 function App() {
 
@@ -21,10 +25,14 @@ function App() {
             <Route path='/committees' element={<Committees/>} />
             <Route exact path="/login" element={<Login />} />
             <Route path='/questions' element={<Questions/>} />
-    	      <Route path='/contact' element={<Contact/>} />
+    	      <Route path='/contacts' element={<Contact/>} />
 		        <Route path='/photos' element={<Photos/>} />
             <Route path='/admin' element={<Admin/>} />
             
+            <Route path='/question' element={<QuestionUpdate/>}/>
+            <Route path='/announcement' element={<AnnouncementUpdate/>}/>
+            <Route path='/committee' element={<CommiteeUpdate/>}/>
+            <Route path='/contact' element={<ContactUpdate/>}/>
           </Routes>
         </BrowserRouter>
       </div>

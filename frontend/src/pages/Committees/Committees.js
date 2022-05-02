@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import CommitteeCardList from '../../components/CommitteeCardList/CommitteeCardList'
-import {PageContainer} from './styles'
+import {PageContainer, Button, AddButtonDiv} from './styles'
 import { AuthContext } from "../../AuthProvider";
 import { Link } from 'react-router-dom';
 
@@ -16,7 +16,7 @@ function Committees() {
      <PageContainer>
         <CommitteeCardList />
     </PageContainer>
-    {currentUser && <Link to='/admin'><button>Add Committee</button></Link>} 
+    {currentUser && <AddButtonDiv><Link to='/admin'><Button>Add Committee</Button></Link></AddButtonDiv>} 
 
     </div>
   )
