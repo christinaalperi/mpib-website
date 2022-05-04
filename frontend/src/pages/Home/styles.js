@@ -7,13 +7,13 @@ export const Container = styled.div`
     flex-flow: row wrap;
     justify-content:center;
     margin-top:35px;
-    
+    margin:0;
 
 `
 
 export const AnnouncementsContainer = styled.div`
     width:500px;
-    padding-right:20px;
+    
 `
 export const Background = styled.div`
     background: #A3BDA7;

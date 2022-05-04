@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react'
+import * as ReactDOM from 'react-dom';
 import { db } from '../../base';
 import PageHeader from '../PageHeader/PageHeader';
 import Navbar from '../Navbar/Navbar';
-import { collection, addDoc, doc, updateDoc } from "firebase/firestore"; 
+import { collection, addDoc, doc, updateDoc, deleteDoc } from "firebase/firestore"; 
 import { Heading, Body, FormElements, CommitteeButton, CommitteeButtonDiv, SubmitButton, Background, Centering } from './styles'
 
 
@@ -15,9 +16,7 @@ function UpdateCommitteeForm() {
     const [newContact, setNewContact] = useState('');
     const [newDesc, setNewDesc] = useState('');
     const [updateInProgress, setUpdateInProgress] = useState(false);
-    const [idToBeUpdated, setIdToBeUpdated] = useState('');
-
-
+    
     const committeeCollection = db.collection("committees");
 
    
@@ -33,65 +32,19 @@ function UpdateCommitteeForm() {
         })
       })
       setCommittees(committeeData)
+      
+
     })
-  },[])
+  }, [committees])
 
  
-  const handleUpdateCommitteeClick = (e) => {
+
+  const handleDeleteCommitteeClick = (e) => {
     e.preventDefault();
-    setUpdateInProgress(true);
-    setCommitteeName(e.target.value);
-    // iterate through committees to find ID of the one clicked, matching to its name 
-    var oldID = ''
-    committees.forEach((comm)=>{
-      if(comm.name==e.target.value){
-        setIdToBeUpdated(comm.id);
-        oldID=comm.id;
-      }
-    });
-
-    //console.log(e.target.value) is committee name that was clicked 
-    var childNode = document.createElement('div');
-    var committeeToUpdate = document.createElement('h4');
-    var text = document.createTextNode(e.target.value);
-
-    committeeToUpdate.appendChild(text);
-    childNode.appendChild(committeeToUpdate);
-   
-    var form = document.createElement('form');
-    var descInput = document.createElement('input');
-    descInput.addEventListener("onChange", (e)=>{
-      setNewDesc(e.target.value)
-    })
-    var descLabel = document.createTextNode('Description: ');
-    var contactInput = document.createElement('input');
-    contactInput.addEventListener("onChange", (e)=>{
-      console.log(e.target.value)
-    })
-    
-    var contactLabel = document.createTextNode('Contact: ');
-    var submitButton = document.createElement('button');
-    submitButton.textContent='Submit';
-    submitButton.addEventListener("onClick", (e)=>{
-      e.preventDefault();
-      console.log(newContact)
-      //updateDoc(doc(db,"committees",oldID),)
-    });
-
-    form.appendChild(contactLabel);
-    form.appendChild(contactInput);
-    form.appendChild(document.createElement('br'));
-    form.appendChild(descLabel);
-    form.appendChild(descInput);
-    form.appendChild(document.createElement('br'));
-    form.appendChild(submitButton);
-
-    childNode.appendChild(form);
-    document.getElementById('committeeBody').appendChild(childNode)
-
-    
-
+    deleteDoc(doc(db,"committees",e.target.value))
   }
+
+
   return (
     <div>
 <PageHeader/>
@@ -127,7 +80,7 @@ function UpdateCommitteeForm() {
             </label>
             <SubmitButton type="submit" value="Submit" onClick={(e) => {
                 e.preventDefault();
-                console.log('here')
+                
                 if((committeeContact!='')&&(committeeName!='')&&(committeeRole!='')){
                   addDoc(collection(db, "committees"), {
                     contact: committeeContact,
@@ -143,23 +96,21 @@ function UpdateCommitteeForm() {
           </FormElements>
         </Background>
           
-          
-  
+        
+              
               <Background>
 
-              <Heading>Update Committee Information</Heading>
-            <CommitteeButtonDiv id='committeeBody'>
-            {committees.map((item, index)=>{
-        
-              return(                 
-                  <CommitteeButton onClick={handleUpdateCommitteeClick} value={item.name} disabled={updateInProgress}>{item.name}</CommitteeButton>
-              )
-            })}
-            </CommitteeButtonDiv>
-              </Background></Centering>
+                <Heading>Delete Committee</Heading>
+                <CommitteeButtonDiv id="deleteCommitteButtons">
+                  {committees.map((item, index)=>{
+                    return(<CommitteeButton onClick={handleDeleteCommitteeClick} value={item.id}>{item.name}</CommitteeButton>)
+                  })}
+                </CommitteeButtonDiv>
+                </Background>
+              </Centering>
            
            
-            
+           
       </Body>
     </div>
     

@@ -34,10 +34,12 @@ function Admin() {
         </Button>
       </LoginButtonDiv>
       {currentUser && <Centering><Container>
-        <Link to='/question'><Button>Edit Questions</Button></Link>
         <Link to='/announcement'><Button>Edit Announcements</Button></Link>
         <Link to='/committee'><Button>Edit Committees</Button></Link>
+        <Link to='/question'><Button>Edit Questions</Button></Link>
         <Link to='/contact'><Button>Edit Contacts</Button></Link>
+        <Link to='/link'><Button>Edit Links</Button></Link>
+        <Link to='/photo'><Button>Edit Photos</Button></Link>
       </Container></Centering>
       }
      

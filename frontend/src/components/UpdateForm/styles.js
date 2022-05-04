@@ -53,6 +53,7 @@ export const DeleteContactsDiv = styled.div`
     
 `
 export const SubmitButton = styled.button`
+
     text-align:center;
     display:inline-block;
     width:fit-content;

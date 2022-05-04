@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../base";
+import PageHeader from "../PageHeader/PageHeader";
+import Navbar from "../Navbar/Navbar";
 
+import { Background, FormElements, SubmitButton, Body, Centering} from "./styles";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,20 +24,32 @@ const Login = () => {
 
   return (
     <div>
-      <form className="loginForm" onSubmit={handleSubmit}>
-        <input
-          placeholder="email"
-          type="email"
-          onChange={(e) => setEmail(e.target.value)}
-        ></input>
-        <input
-          placeholder="password"
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-        ></input>
-        <button>Log In</button>
-      </form>
+<PageHeader/>
+      <Navbar/>
+    <Body>
+      
+      <Centering>
+      <Background>
+          <FormElements className="loginForm" onSubmit={handleSubmit}>
+            <input
+              placeholder="email"
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
+            ></input>
+            <input
+              placeholder="password"
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+            ></input>
+            <SubmitButton>Log In</SubmitButton>
+          </FormElements>
+      </Background>
+      </Centering>
+      
+      
+    </Body>
     </div>
+    
   );
 };
 

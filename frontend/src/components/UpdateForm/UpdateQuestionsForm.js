@@ -51,7 +51,7 @@ function UpdateQuestionsForm() {
             </label>
             <SubmitButton type='submit' value="Submit" onClick={(e)=>{
                 e.preventDefault();
-               if((question!='')&&(answer!='')){
+               if((question!=='')&&(answer!=='')){
                 addDoc(collection(db, 'questions'), {
                     question: question, 
                     answer: answer

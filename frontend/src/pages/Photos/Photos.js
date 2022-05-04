@@ -1,27 +1,37 @@
 import React, {useState, useEffect} from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import PageHeader from '../../components/PageHeader/PageHeader'
-const axios = require('axios');
-//import InstaFeed from '../../components/InstaFeed/InstaFeed'
-//
+import { storage, db } from '../../base'
+import { collection, addDoc, deleteDoc, doc } from "firebase/firestore"; 
+import {Image} from './styles'
+
 function Photos() {
-  const [profileData, setProfileData] = useState([])
+  const [urls, setURLs] = useState([])
+  
+  const urlCollection = db.collection('photos')
+
   useEffect(()=>{
-    const igUsername = 'mphsibcouncil'
-    const fetchData = async () => {
-      const result = await axios.get('https://www.instagram.com/' + igUsername + '/?__a=1');
-    }
-    fetchData().then((res)=>console.log(res.data)).catch((err)=>console.log(err));
-   
-	//setProfileData(result.data);
+    urlCollection.onSnapshot((snapshot)=> {
+      const data = [];
+      snapshot.docs.map((doc)=>{
+        data.push({
+          id: doc.id,
+          url: doc.data().url
+        })
+      })
+      setURLs(data);      
+    })
+
   },[])
+
   return (
     <div>
         <PageHeader />
         <Navbar/>
-        {(profileData!==[]) &&
-        <p>See console for profileData</p>
-        }
+        {urls.map((url)=>{
+          console.log(url)
+          if(url.url!=='') return <Image src={url.url}/>
+        })}
     </div>
   )
 }

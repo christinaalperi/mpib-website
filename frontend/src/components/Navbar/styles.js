@@ -13,23 +13,26 @@ font-family: 'Montserrat', sans-serif;
 export const NavLink = styled(Link)`
 color: black;
 display: flex;
+margin:0;
 align-items: center;
 text-decoration: none;
-padding: 0 1rem;
+padding: 0 1.5rem;
 height: 100%;
 cursor: pointer;
 &.active {
 	color: #24783a;
+	font-weight: bold;
 }
 `;
 
 
 
 export const NavMenu = styled.div`
+
 display: flex;
 align-items: center;
-padding-bottom:20px;
-white-space: nowrap; */
+padding:25px 0;
+white-space: nowrap; 
 @media screen and (max-width: 768px) {
 	display: none;
 }

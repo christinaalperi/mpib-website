@@ -32,7 +32,7 @@ function UpdateAnnouncementForm() {
         })
         setAnnouncements(announcementsData);
       })
-    },[])
+    },[announcements])
 
 
     

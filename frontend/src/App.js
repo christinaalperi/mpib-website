@@ -13,6 +13,8 @@ import QuestionUpdate from "./pages/Admin/Question"
 import AnnouncementUpdate from "./pages/Admin/Announcement"
 import CommiteeUpdate from "./pages/Admin/Committee"
 import ContactUpdate from "./pages/Admin/Contact"
+import LinkUpdate from "./pages/Admin/Hyperlink"
+import PhotoUpdate from "./pages/Admin/Photo"
 
 function App() {
 
@@ -33,6 +35,8 @@ function App() {
             <Route path='/announcement' element={<AnnouncementUpdate/>}/>
             <Route path='/committee' element={<CommiteeUpdate/>}/>
             <Route path='/contact' element={<ContactUpdate/>}/>
+            <Route path='/link' element={<LinkUpdate/>}/>
+            <Route path='/photo' element={<PhotoUpdate/>}/>
           </Routes>
         </BrowserRouter>
       </div>
