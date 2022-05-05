@@ -22,7 +22,7 @@ function Home() {
       <Container>
         <AnnouncementsContainer>
           <AnnouncementList />
-          {currentUser && <AddButtonDiv><Link to='/admin'><Button>Add Announcement</Button></Link></AddButtonDiv>} 
+          {currentUser && <AddButtonDiv><Link to='/announcement'><Button>Add Announcement</Button></Link></AddButtonDiv>} 
 
           <ImportantLinks/>
           {currentUser && <AddButtonDiv><Link to='/link'><Button>Add Links</Button></Link></AddButtonDiv>}

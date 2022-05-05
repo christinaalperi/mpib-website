@@ -18,7 +18,7 @@ function Questions() {
         <Navbar />
         <Disclaimer>**Answers from students on IB Leadership**</Disclaimer>
         <Background><QuestionsList /></Background>
-        {currentUser&&<AddButtonDiv><Link to="/admin"><Button>Add Question</Button> </Link></AddButtonDiv>}
+        {currentUser&&<AddButtonDiv><Link to="/question"><Button>Add Question</Button> </Link></AddButtonDiv>}
       </div>
    
   )

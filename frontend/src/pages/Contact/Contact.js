@@ -15,7 +15,7 @@ function Contact() {
         <PageHeader />
         <Navbar />
         <ContactsList />
-       {currentUser && <AddButtonDiv><Link to='/admin'><Button>Add Contact</Button></Link></AddButtonDiv>} 
+       {currentUser && <AddButtonDiv><Link to='/contact'><Button>Add Contact</Button></Link></AddButtonDiv>} 
     </div>
   )
 }

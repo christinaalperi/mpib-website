@@ -20,7 +20,7 @@ const UpdateLinksForm = () => {
       })
       setLinks(data);
     })
-  },[links]);
+  },[]);
 
   const handleOnSubmit = (e) => {
     e.preventDefault();

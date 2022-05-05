@@ -6,20 +6,42 @@ import { storage, db } from '../../base'
 const UpdatePhotosForm = () => {
     const [imageUpload, setImageUpload] = useState(null)
     const [photoURL, setPhotoURL] = useState('')
+    const [imgList, setImgList] = useState([{}])
+   
+    const imgRef = storage.ref()
+    const imgURLCollection = db.collection("photos");
+  
+    useEffect(()=>{
+        const data = []
+        imgURLCollection.onSnapshot((snapshot)=>{
+            snapshot.docs.map((doc)=>{
+                data.push({
+                    id:doc.id,
+                    url:doc.data().url,
+                    name:doc.data().url.substring(92).split('?',1)[0]
+                })
+            })
+            
+            setImgList(data);
+        })
+    },[])
+
+    const handleDelete = (e) => {
+        e.preventDefault()
+        console.log(e.target.value)
+        imgRef.child(`/images/${e.target.name}`).delete().then(()=>{
+            deleteDoc(doc(db,"photos",e.target.value)).then(()=>{alert("success")})
+        }).catch((err)=>console.log(err))
+    }
 
     const uploadURL = (url) => {  
-        console.log(url)
         addDoc(collection(db,'photos'),{
             url: url
-        })
-
+        })   
     }
     const uploadImage = (e) => {
         e.preventDefault()
-        const fileType = imageUpload['type'];
-        console.log(fileType)
         if(imageUpload==null) return;
-        console.log(imageUpload)
         const storageRef = storage.ref()
         const uploadTask = storageRef.child(`/images/${imageUpload.name}`).put(imageUpload)
         uploadTask.on('state_changed', 
@@ -37,12 +59,11 @@ const UpdatePhotosForm = () => {
                 .getDownloadURL()
                 .then((url)=>{
                     console.log(`File available at: ${url}`)
-                    // need to send url to firestore photos collection
                     setPhotoURL(url);
-                    // setPhotoURLs(...photoURLs, url)
                     uploadURL(url);
                     alert("success")
                 });
+            
             
         })
     }
@@ -59,6 +80,34 @@ const UpdatePhotosForm = () => {
                    
                 </FormElements>
                 
+            </Background>
+
+
+            <Background>
+                <Heading>
+                    Delete Images
+                </Heading>
+                 <div>
+                    <ul style={{'listStyle':'none'}}>
+                    
+                    {imgList.map((item, index)=>{
+                              
+                                return(
+                                    <li key={index}>
+                                    
+                                    <label><button onClick={(e)=>handleDelete(e)} name={item.name} value={item.id}>{item.name}</button></label>
+                                    </li>
+                                )
+                            
+                        
+                        })}
+                    
+                    
+                        
+                    </ul>
+                    
+                    
+                    </div>
             </Background>
         </Centering>
     </Body>

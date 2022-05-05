@@ -16,7 +16,7 @@ function Committees() {
      <PageContainer>
         <CommitteeCardList />
     </PageContainer>
-    {currentUser && <AddButtonDiv><Link to='/admin'><Button>Add Committee</Button></Link></AddButtonDiv>} 
+    {currentUser && <AddButtonDiv><Link to='/committee'><Button>Add Committee</Button></Link></AddButtonDiv>} 
 
     </div>
   )

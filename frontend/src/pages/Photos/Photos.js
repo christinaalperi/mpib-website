@@ -1,13 +1,15 @@
 import React, {useState, useEffect} from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import PageHeader from '../../components/PageHeader/PageHeader'
-import { storage, db } from '../../base'
-import { collection, addDoc, deleteDoc, doc } from "firebase/firestore"; 
-import {Image} from './styles'
+import { db } from '../../base'
+
+
+
+import {Image, GalleryContainer, ImageContainer} from './styles'
 
 function Photos() {
   const [urls, setURLs] = useState([])
-  
+  const gallery = [];
   const urlCollection = db.collection('photos')
 
   useEffect(()=>{
@@ -28,10 +30,15 @@ function Photos() {
     <div>
         <PageHeader />
         <Navbar/>
+        
+        
+        <GalleryContainer>
         {urls.map((url)=>{
-          console.log(url)
-          if(url.url!=='') return <Image src={url.url}/>
+         if(url.url!=='') return <ImageContainer><Image src={url.url}/></ImageContainer>
         })}
+        </GalleryContainer>
+        
+ 
     </div>
   )
 }
