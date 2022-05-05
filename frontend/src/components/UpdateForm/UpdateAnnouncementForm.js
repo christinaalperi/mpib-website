@@ -15,7 +15,9 @@ function UpdateAnnouncementForm() {
       announcements.forEach((el)=>{
         if(document.getElementById(el.title).checked==true){
           console.log(el.id);
-          deleteDoc(doc(db,"announcements",el.id));
+          deleteDoc(doc(db,"announcements",el.id)).then(()=>{
+            alert("success")
+          });
         }
         
       })
@@ -54,6 +56,8 @@ function UpdateAnnouncementForm() {
                 addDoc(collection(db, 'announcements'), {
                     title: title, 
                     details: details
+                }).then(()=>{
+                  alert("success")
                 })
                }
             }}>Submit</SubmitButton>

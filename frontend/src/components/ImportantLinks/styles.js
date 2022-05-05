@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Background = styled.div`
     background: #d3dbd3;   
     border-radius:20px;
-    width:fit-content; 
+    width:91%;
 `
 export const Centering = styled.div`
     display:flex;
@@ -31,7 +31,7 @@ export const LinkElement = styled.p`
 export const Hyperlink = styled.a`
    
     &:visited {
-        color:#77a17d;
+        color:#547559;
     }
 
     &:link {

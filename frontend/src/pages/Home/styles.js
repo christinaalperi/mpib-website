@@ -19,7 +19,8 @@ export const Background = styled.div`
     background: #A3BDA7;
     border-radius:20px;
     margin:20px;
-    padding:20px;   
+    padding:20px;  
+    height:fit-content; 
     `
 
     export const Button = styled.button`

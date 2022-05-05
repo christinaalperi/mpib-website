@@ -29,10 +29,12 @@ function Home() {
           </AnnouncementsContainer>
         
         
-
-        <Background>
+<AnnouncementsContainer>
+    <Background>
         <ReactEmbeddedGoogleCalendar publicUrl="https://calendar.google.com/calendar/embed?src=myersparkibwebsite%40gmail.com&ctz=America%2FNew_York&title=IB%20Event%20Calendar&color=A3BDA7" width='400px' height='400px'></ReactEmbeddedGoogleCalendar>
           </Background>
+</AnnouncementsContainer>
+        
       
       </Container>
       

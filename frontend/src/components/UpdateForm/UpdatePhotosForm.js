@@ -30,7 +30,7 @@ const UpdatePhotosForm = () => {
         e.preventDefault()
         console.log(e.target.value)
         imgRef.child(`/images/${e.target.name}`).delete().then(()=>{
-            deleteDoc(doc(db,"photos",e.target.value)).then(()=>{alert("success")})
+            deleteDoc(doc(db,"photos",e.target.value)).then(()=>{alert("Success: please refresh the page")})
         }).catch((err)=>console.log(err))
     }
 
@@ -61,7 +61,7 @@ const UpdatePhotosForm = () => {
                     console.log(`File available at: ${url}`)
                     setPhotoURL(url);
                     uploadURL(url);
-                    alert("success")
+                    alert("Success: please refresh the page")
                 });
             
             
