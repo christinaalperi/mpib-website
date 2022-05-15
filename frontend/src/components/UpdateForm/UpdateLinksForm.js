@@ -29,7 +29,9 @@ const UpdateLinksForm = () => {
     links.forEach((el)=>{
       if(document.getElementById(el.url).checked==true){
         console.log(el.id);
-        deleteDoc(doc(db,"links",el.id));
+        deleteDoc(doc(db,"links",el.id)).then(()=>{
+          alert("success")
+        });
       }
       
     })

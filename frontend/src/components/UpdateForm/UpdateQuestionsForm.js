@@ -31,7 +31,9 @@ function UpdateQuestionsForm() {
     questions.forEach((el)=>{
       if(document.getElementById(el.question).checked==true){
         console.log(el.id);
-        deleteDoc(doc(db,"questions",el.id));
+        deleteDoc(doc(db,"questions",el.id)).then(()=>{
+          alert("success")
+        });
       }
       
     })

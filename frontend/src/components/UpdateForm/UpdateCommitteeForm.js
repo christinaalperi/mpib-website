@@ -11,7 +11,6 @@ function UpdateCommitteeForm() {
     const [committees, setCommittees] = useState([{}])
     const [committeeName, setCommitteeName] = useState('');
     const [committeeContact, setCommiteeContact] = useState('');
-    const [imgURL, setimgURL] = useState(null);
     const [committeeRole, setCommitteeRole] = useState('');
     const [newContact, setNewContact] = useState('');
     const [newDesc, setNewDesc] = useState('');
@@ -41,7 +40,9 @@ function UpdateCommitteeForm() {
 
   const handleDeleteCommitteeClick = (e) => {
     e.preventDefault();
-    deleteDoc(doc(db,"committees",e.target.value))
+    deleteDoc(doc(db,"committees",e.target.value)).then(()=>{
+      alert("success")
+    });
   }
 
 
@@ -75,16 +76,13 @@ function UpdateCommitteeForm() {
                 
                 }}/>
             </label>
-            <label>
-              Img: <input type='file' value={imgURL} onChange={(e)=>setimgURL(e.target.files[0])}/>
-            </label>
+            
             <SubmitButton type="submit" value="Submit" onClick={(e) => {
                 e.preventDefault();
                 
                 if((committeeContact!='')&&(committeeName!='')&&(committeeRole!='')){
                   addDoc(collection(db, "committees"), {
                     contact: committeeContact,
-                    imgURL: imgURL,
                     name: committeeName,
                     role: committeeRole
                   });
